@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_widgets/widgets/button.dart';
 
 class ListViewPage extends StatefulWidget {
   const ListViewPage({Key? key}) : super(key: key);
@@ -11,7 +12,18 @@ class _ListViewPageState extends State<ListViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: _basicHorizontalListView()),
+      appBar: AppBar(
+        actions: [
+          InkWell(
+            child: Icon(Icons.arrow_right),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => ButtonPage()));
+            },
+          )
+        ],
+      ),
+      body: Container(child: _basicListViewBuilder()),
     );
   }
 
@@ -30,9 +42,11 @@ class _ListViewPageState extends State<ListViewPage> {
 
   _basicListViewBuilder() {
     return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) => _tile(index),
-    );
+        itemCount: 10,
+        itemBuilder: (context, index) => //_tile(index),
+            _expansionTile(
+              index,
+            ));
   }
 
   _basicListViewSeperated() {
@@ -114,5 +128,23 @@ class _ListViewPageState extends State<ListViewPage> {
     //     children: [Icon(Icons.access_alarm), Text('$index')],
     //   ),
     // );
+  }
+
+  _expansionTile(index) {
+    return ExpansionTile(
+      title: Text('Title $index'),
+      children: [
+        Container(
+          height: 100,
+          width: 300,
+          color: Colors.green.shade400,
+          child: ListTile(
+            title: Text('Title $index'),
+            subtitle: Text('SubTitle $index'),
+            leading: Icon(Icons.home),
+          ),
+        )
+      ],
+    );
   }
 }
