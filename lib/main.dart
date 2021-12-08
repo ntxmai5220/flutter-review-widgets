@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:review_widgets/test_page.dart';
-import 'package:review_widgets/widgets/button.dart';
-import 'package:review_widgets/widgets/list_view.dart';
+
+import 'widgets/animation/animation.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TestPage(),
+      debugShowCheckedModeBanner: false,
+      home: AnimationPage(),
     );
   }
 }
